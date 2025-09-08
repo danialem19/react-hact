@@ -1,0 +1,1390 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding-bottom: 60px; /* Prevents content from being hidden behind footer */
+    padding-top: 80px; /* Prevents content from being hidden behind the fixed header */
+/*    background: linear-gradient(90deg, rgba(0,95,115,1) 0%, rgba(18,109,127,1) 13%, rgba(209,255,254,1) 100%);*/
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(173deg, rgba(34,163,250,1) 0%, rgba(3,100,126,1) 31%, rgba(2,67,119,1) 35%, rgba(33,122,182,1) 67%, rgba(0,63,115,1) 82%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    height: 75px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+header .horn-of-africa-clinical-trials-logo {
+    display: flex;
+    align-items: center;
+}
+
+header .horn-of-africa-clinical-trials-logo img {
+    width: 85px;
+    height: 75px;
+    margin-right: 5px;
+}
+
+header h1 {
+  font-family: Georgia, sans-serif;
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+/*    background: linear-gradient(173deg, rgba(34,163,250,1) 0%, rgba(3,100,126,1) 31%, rgba(2,67,119,1) 35%, rgba(33,122,182,1) 67%, rgba(0,63,115,1) 82%);*/
+/*    padding: 10px 10px;*/
+    border-radius: 18px;
+    font-family: Georgia, sans-serif;
+    transition: background 0.3s;
+/*    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3)*/
+}
+
+.header nav ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.nav-links a:hover {
+    background: #ffdd57; /* Highlight color */
+    color: #0a4d68; /* Text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slight pop effect */
+    padding: 10px 10px;
+}
+
+/* Toggle Menu Button */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    width: 50%;
+}
+
+.div1 {
+/*    background: linear-gradient(90deg, rgba(209,255,254,1) 0%, rgba(0,95,115,1) 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+    overflow: hidden;
+}
+
+.div1 p {
+    text-align: left;
+}
+
+.div3 {
+    width: 35%;
+}
+
+.div1 img {
+    float: left; /* Pushes text to the right */
+    margin: 5px 15px 5px 0; /* Adds spacing between text and image */
+    max-width: 150px; /* Adjust size as needed */
+    height: auto; /* Maintains aspect ratio */
+/*    width: 75%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 1rem;*/
+}
+
+.div1 h2, 
+.div1 p {
+    display: block;
+    text-align: justify;
+    margin-left: 170px; /* Indents text to align properly around image */
+}
+
+.responsive-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Services Section */
+.services {
+    padding: 3rem 1rem;
+/*    background: linear-gradient(90deg, rgba(209,255,254,1) 0%, rgba(0,95,115,1) 100%);*/
+    background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
+    width: 100vw; /* Make the section stretch to the full width */
+    min-height: calc(100vh - 115px);
+    margin: 0 auto;
+        display: flex;
+    flex-direction: column; /* Stack the sections vertically */
+    gap: 20px; /* Adjust the gap between the sections */
+
+    background: linear-gradient(to bottom, transparent 20%, #FFFFFF 30%), 
+                url('services.png');
+    background-size: contain; /* Ensures the image fully fits within 30% */
+    background-repeat: no-repeat;
+    background-position: center top; /* Positions image at the bottom */
+}
+
+.services h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.services p {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 1105px;
+    margin: 0 auto 2rem auto;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+/* Services Container */
+.services-container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 1 auto;
+}
+
+/* Individual Service Box */
+.box {/*
+    background: linear-gradient(90deg, rgba(0,95,115,1) 0%, rgba(18,109,127,1) 13%, rgba(209,255,254,1) 100%);*/
+/*    background-color: #E4E4E1;*/
+    background-color: white;
+/* background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);*/
+    background-blend-mode: normal, multiply;
+/*    background: rgba(255, 255, 255, 0.1);*/
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid black;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.box img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.box h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.box p {
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.box blockquote {
+    font-style: normal;
+    font-size: 24px;
+    line-height: 26.22px;
+    font-family: 'Franziska, Georgia, Cambria';
+    hyphens: auto;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(173deg, rgba(34,163,250,1) 0%, rgba(3,100,126,1) 31%, rgba(2,67,119,1) 35%, rgba(33,122,182,1) 67%, rgba(0,63,115,1) 82%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+    height: 40px
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav ul {
+        display: none;/*
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: #333;
+        width: 200px;
+        border-radius: 5px;
+        flex-direction: column;
+        text-align: left;*/
+    }
+
+    header nav ul.active {
+        display: flex; /* Show menu when active class is added */
+        position: absolute;
+        top: 60px; /* Adjust according to your header */
+        right: 10px;
+        background: linear-gradient(173deg, rgba(34,163,250,1) 0%, rgba(3,100,126,1) 31%, rgba(2,67,119,1) 35%, rgba(33,122,182,1) 67%, rgba(0,63,115,1) 82%);
+        width: fit-content;
+        border-radius: 5px;
+        flex-direction: column;
+        text-align: center;
+        padding: 2px 2px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    }
+
+    .about-us dl {
+        flex-wrap: wrap;
+    }
+
+    .about-us dl dd {
+        font-size: 3.5vw;
+    }
+
+    header nav ul li {
+        margin: 5px;
+    }
+
+    .main-content {
+        background: url('landing-mobile.jpg'); /* Mobile-specific image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .modal-content-home {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .modal-content-home fieldset legend {
+        font-size: 1.3rem;
+    }
+
+    #modal-description-home {
+        font-size: 0.95rem;
+    }
+
+    .modal-content-home fieldset blockquote {
+        padding: 8px;
+    }
+
+    .container, .div3 {
+        width: 100%;
+    }
+
+    .services-container {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    .board-container {
+        grid-template-columns: 1fr 1fr;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .board-member {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 5vw; /* Slightly larger for mobile */
+    }
+
+    p {
+        font-size: 3.5vw; /* Adjust paragraph size for readability */
+    }
+
+    .modal-content-home blockquote p {
+        font-size: 1.30rem;
+        padding: 0.05vw;
+    }
+
+    .ribbon {
+        font-size: 3vw; /* Adjust font size for smaller screens */
+        --s: 7vw;
+        --d: 3vw;
+        --c: 3vw;
+    }
+
+    .contact-section h2 {
+        font-size: 2rem;
+    }
+    .contact-section p {
+        font-size: 1rem;
+    }
+    .contact-info {
+        width: 100%;
+        font-size: 1rem;
+    }
+    .social-links a {
+        padding: 10px;
+    }
+}
+
+/* Slideshow Container */
+.slideshow {
+    position: relative;
+    width: 75%; /* Adjust as needed */
+    max-width: 500px;
+    margin: auto;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 15px;
+/*    clip-path: polygon(99.32% 58.21%,92.43% 76.46%,79.07% 90.68%,61.29% 98.71%,41.79% 99.32%,23.54% 92.43%,9.32% 79.07%,1.29% 61.29%,0.68% 41.79%,7.57% 23.54%,20.93% 9.32%,38.71% 1.29%,58.21% 0.68%,76.46% 7.57%,90.68% 20.93%,98.71% 38.71%);*/
+
+}
+
+/* Slideshow Image */
+#slideshow-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 1s ease-in-out, filter 1s ease-in-out;
+}
+
+/* Blur Effect */
+.fade-blur {
+    opacity: 1;
+    filter: blur(10px);
+}
+
+/* Board Members Section */
+.board-members {
+    display: flex;
+    flex-direction: column;
+/*    padding: 3rem 1rem;*/
+/*    background: linear-gradient(90deg, rgba(209,255,254,1) 0%, rgba(0,95,115,1) 100%);*/
+/*background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);*/
+    width: 100vw; /* Make the section stretch to the full width */
+    min-height: calc(100vh - 115px);
+    gap: 0px;
+    background: linear-gradient(to bottom, transparent 20%, #FFFFFF 30%), 
+                url('team-background.png');
+    background-size: contain; /* Ensures the image fully fits within 30% */
+    background-repeat: no-repeat;
+    background-position: center top; /* Positions image at the bottom */
+}
+
+.board-members p {
+    padding-left: 5px; /* Adjust the left padding as needed */
+    padding-right: 0; /* Ensure no right padding */
+    padding-top: 55px; /* Optional: Adjust top padding */
+    padding-bottom: 20px; /* Optional: Adjust bottom padding */
+    text-align: left; /* Ensures text stays aligned to the left */
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.board-members h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+/* Board Member Grid */
+.board-container {
+    padding: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 1 auto;
+}
+
+/* Individual Board Member Styling */
+.board-member {
+/*    border-radius: 15px;*/
+    border-radius: 50% / 10%;
+/*    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);*/
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
+/*    background: rgba(255, 255, 255, 0.1);*/
+/*    background-color: #E4E4E1;*/
+    background: linear-gradient(to bottom, #d1d1cf 70px, #555555 70px, #E4E4E1 72px);
+/*    background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);*/
+    background-blend-mode: normal, multiply;
+/*    width: 280px;
+    height: 173px;*/
+    height: 173px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.board-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.member-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    border: 3px solid #005f91;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Board Member Name and Role */
+.board-member h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.board-member p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+    padding-top: 1px;
+    overflow-y: auto;
+}
+
+.modal-content {
+  font-size: 10px;
+  max-width: 500px;
+  padding: 10px;
+  max-height: 60vh;
+  margin-bottom: 8px;
+  margin: 5% auto;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+}
+
+.modal-content p {
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.modal-content {
+  /* tail dimension */
+  --b: 2em; /* base */
+  --h: 1.5em; /* height */
+
+  --p: 50%; /* main position (0%:top 100%:bottom) */
+  --x: -1.8em; /* tail position (relative to the main position). Can be percentage */
+  --r: 1.2em; /* the radius */
+  --c: #cf9d38;
+
+  padding: 1em;
+  border-radius: 10px;
+/*  clip-path: polygon(0 0,100% 0,100% 100%,0 100%,
+    0 clamp(var(--b),var(--p) + var(--b)/2,100%),
+    calc(-1*var(--h)) calc(var(--p) + var(--x)),
+    0 clamp(0%,var(--p) - var(--b)/2,100% - var(--b)));*/
+/*    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
+    background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
+/*  background: linear-gradient(0deg, rgba(2,67,119,1) 0%, rgba(33,122,182,1) 0%, rgba(34,163,250,1) 0%, rgba(24,127,154,1) 0%, rgba(0,63,115,1) 100%);/**/
+/*  border-image: linear-gradient(0deg, rgba(2,67,119,1) 0%, rgba(33,122,182,1) 0%, rgba(34,163,250,1) 0%, rgba(24,127,154,1) 0%, rgba(0,63,115,1) 100%);*/
+}
+
+
+.modal-content img {
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+
+/*.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    font-size: 0.9rem;
+    font-family: "Poppins", Arial, sans-serif;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+}*/
+
+/* Main Section Styling */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('landing4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: calc(100vh - 115px);
+    padding: 2rem;
+}
+
+/* Modal Content (Centered and Responsive) */
+.modal-content-home {
+    max-width: 800px; /* Limits width on larger screens */
+    width: 90%; /* Makes it responsive */
+    background: rgba(255, 255, 255, 0.4); /* Light background for readability */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Fieldset Styling */
+.modal-content-home fieldset {
+    border: 2px solid #59bdd7;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.modal-content-home p {
+    text-align: left;
+}
+
+/* Legend Styling */
+.modal-content-home fieldset legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+/* Text Styling */
+#modal-description-home {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    padding: 10px;
+}
+
+/* Responsive Blockquote */
+.modal-content-home fieldset blockquote {
+    margin: 10px 0;
+    padding: 5px;
+    border-left: 4px solid #59bdd7;
+    font-style: italic;
+}
+
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .modal-content-home {
+/*        width: 95%; /* Even wider on small phones */
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.8);
+    }
+    .board-container {
+        padding: 10px;
+        grid-template-columns: 1fr;
+    }
+
+    .board-member {
+        padding: 1rem;
+    }
+
+    .contact-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .contact-info {
+        font-size: 1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+    }
+
+    .board-members p {
+        padding-left: 2px; /* Adjust the left padding as needed */
+        padding-right: 0; /* Ensure no right padding */
+        padding-top: 2px; /* Optional: Adjust top padding */
+        padding-bottom: 5px; /* Optional: Adjust bottom padding */
+    }
+
+    .board-members {
+        background: linear-gradient(to bottom, transparent 10%, #FFFFFF 20%), url('team-background.png');
+        background-repeat: no-repeat;
+        background-position: center top; /* Positions image at the bottom */
+    }
+
+    .services {
+        background: linear-gradient(to bottom, transparent 10%, #FFFFFF 20%), url('services2.png');
+        background-repeat: no-repeat;
+        background-position: center top; /* Positions image at the bottom */
+    }
+
+    .contact-section {
+        background: linear-gradient(to bottom, transparent 50%, #FFFFFF 20%), url('contact-background2.png');
+        background-repeat: no-repeat;
+        background-position: center bottom; /* Positions image at the bottom */
+    }
+
+
+
+    h2 {
+        font-size: 6vw; /* Even larger for small screens */
+    }
+
+    p {
+        font-size: 4vw; /* Readable on very small devices */
+    }
+
+    .main-content {
+        background: url('landing-mobile.jpg'); /* Mobile-specific image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 2px;
+    }
+
+    .modal-content-home {
+        width: 98%; /* Makes content almost full width */
+        width: 80%;
+        padding: 10px; /* Less padding for better fit */
+        font-size: 0.9rem; /* Adjust font size for readability */
+    }
+
+    .modal-content-home fieldset legend {
+        font-size: 1.2rem; /* Slightly smaller heading */
+    }
+
+    #modal-description-home {
+        padding: 5px;
+        font-size: 0.85rem; /* Slightly smaller text */
+    }
+
+    .modal-content-home fieldset blockquote {
+        padding: 8px;
+    }
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Scales between 1.5rem and 2.5rem based on screen size */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.2rem); /* Scales between 1rem and 1.2rem */
+    line-height: 1.6;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+section {
+    padding: 5vh 5vw; /* Adjust padding based on viewport size */
+    width: 100vw;
+}
+
+.ribbon {
+    font-size: 1rem;
+    color: white;
+    background-color: #005f91;
+    padding: 8px 12px;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.ribbon {
+  --s: 1.9em; /* the ribbon size */
+  --d: .8em;  /* the depth */
+  --c: .8em;  /* the cutout part */
+  text-align: center;
+  padding: var(--d) calc(var(--s) + .5em) 0;
+  background:
+    conic-gradient(from  45deg at left  var(--s) top var(--d),
+     #0008 12.5%,#0000 0 37.5%,#0004 0) 0   /50% 100% no-repeat,
+    conic-gradient(from -45deg at right var(--s) top var(--d),
+     #0004 62.5%,#0000 0 87.5%,#0008 0) 100%/50% 100% no-repeat;
+  clip-path: polygon(0 0,calc(var(--s) + var(--d)) 0,calc(var(--s) + var(--d)) var(--d),calc(100% - var(--s) - var(--d)) var(--d),calc(100% - var(--s) - var(--d)) 0,100% 0, calc(100% - var(--c)) calc(50% - var(--d)/2),100% calc(100% - var(--d)),calc(100% - var(--s)) calc(100% - var(--d)),calc(100% - var(--s)) 100%,var(--s) 100%,var(--s) calc(100% - var(--d)),0 calc(100% - var(--d)),var(--c) calc(50% - var(--d)/2));
+  background-color: #005f91; /* the main color */
+  width: fit-content;
+}
+
+.view-details {
+    background: #005f91;
+    color: white;
+    border: none;
+    padding: 12px 12px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.view-details:hover {
+    background: #ffd700;
+    color: #005f91;
+}
+
+.contact-section {
+    padding: 3rem 1rem;
+    background: 
+        linear-gradient(to bottom, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 15%, #efeeec 15%, #e9e9e7, transparent 30%), 
+        url('contact-background5.jpg');
+    width: 100vw; /* Stretch the section to full width */
+    min-height: calc(100vh - 115px);
+    margin: 0 auto;
+    
+    background-size: contain; /* Ensures the image fully fits within the allocated space */
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Moves the image to the bottom */
+}
+
+.contact-section h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.contact-section p {
+    color: #333;
+    text-align: left;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+
+
+/* Contact Section Styling */
+.contact-container {
+/*    background: linear-gradient(to bottom, #59bdd7, #0a4d68);*/
+    background: linear-gradient(to bottom, 
+            #ffff 0%, #ffff 5%, /* Top color (Blue) */
+            transparent 5%, transparent 6%, /* Thin Gray Line */
+            #ffff 6%, #ffff 94%, /* Center Transparent */
+            transparent 94%, transparent 95%, /* Thin Gray Line */
+            #ffff 95%, #ffff 100% /* Bottom color (Blue) */
+        );
+    border: 1px solid black;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* Deeper shadow for elevation */
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle hover effect */
+.contact-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Info Styling */
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 14px; /* More balanced spacing */
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 12px 0;
+    justify-content: center;
+}
+
+/* Icon Styling */
+.contact-info i {
+    font-size: 1.6rem;
+    color: #ffdd57; /* Golden highlight */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Icon Hover Effect */
+.contact-info i:hover {
+    transform: scale(1.2);
+    color: #ffd700; /* Slightly brighter gold */
+}
+
+.contact-info p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Social Links Styling */
+.social-links {
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 500px;
+    background: linear-gradient(to bottom, #59bdd7, #0a4d68);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.social-links:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 20px;
+    font-size: 1.9rem;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+/*.social-links a:hover {
+    color: #ffdd57;
+    transform: scale(1.2);
+}*/
+
+.social-links i {
+    color: gold;
+}
+
+.social-links i:hover {
+    color: greenyellow;
+    transform: scale(1.2);
+}
+
+/* Responsive Styling for Mobile */
+@media (max-width: 480px) {
+    .contact-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .social-links {
+        padding: 5px;
+        max-width: 90%;
+    }
+
+    .contact-info {
+        font-size: 1rem;
+        gap: 10px;
+    }
+
+    .social-links a {
+        font-size: 1.8rem;
+        margin: 0 10px;
+    }
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon-test {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 260px;
+  color: #fff;
+}
+.ribbon-test {
+  --r: .4em; /* control the ribbon shape (the radius) */
+  --c: #1e3c72;
+
+  position: absolute;
+  bottom: 20px;
+  left: calc(-1*var(--r));
+  line-height: 1.8; 
+  padding: calc(2*var(--r)) .5em 0;
+  border-radius: var(--r) 0 0 var(--r);
+  background: 
+    radial-gradient(100% 50% at left,var(--c) 98%,#0000 101%) 100% 100%/.5lh calc(100% - 2*var(--r)),
+    radial-gradient(100% 50% at right,#0005 98%,#0000 101%) 0 0/var(--r) calc(2*var(--r)),
+    conic-gradient(at var(--r) calc(2*var(--r)),#0000 25%,var(--c) 0) 0 0/calc(101% - .5lh) 100%;
+  background-repeat: no-repeat;   
+}
+
+
+/* about-use Section */
+.about-us {
+    padding: 3rem 1rem;
+/*    background: linear-gradient(90deg, rgba(209,255,254,1) 0%, rgba(0,95,115,1) 100%);*/
+/*    background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);*/
+    background: linear-gradient(to bottom, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 15%, #efeeec 15%, #e9e9e7, transparent 30%), 
+                url('about-us-bottom.jpg');
+    width: 100vw; /* Make the section stretch to the full width */
+    min-height: calc(100vh - 115px);
+    margin: 0 auto;
+    background-size: contain; /* Ensures the image fully fits within 30% */
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Positions image at the bottom */
+}
+
+.about-us h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us p {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 1105px;
+    margin: 0 auto 0rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us dl {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 1105px;
+    margin: 0 auto 2rem auto;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us dl dt {
+    font-size: 1.5rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us dl dd img {
+    width: 25px; /* Adjust size */
+    height: 25px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Services Container */
+.about-us-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 1 auto;
+}
+
+/* Individual Service Box */
+.about-us-box {
+    /*
+    background: linear-gradient(90deg, rgba(0,95,115,1) 0%, rgba(18,109,127,1) 13%, rgba(209,255,254,1) 100%);*/
+/*    background-color: #E4E4E1;*/
+    background-color: white;
+/*    background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);*/
+    background-blend-mode: normal, multiply;
+/*    background: rgba(255, 255, 255, 0.1);*/
+    padding: 1.5rem;
+    border-radius: 0px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+/*    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+}
+
+.about-us-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-box img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.about-us-box h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.about-us-box p {
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.about-us-box blockquote {
+    font-style: normal;
+    font-size: 24px;
+    line-height: 26.22px;
+    font-family: 'Franziska, Georgia, Cambria';
+    hyphens: auto;
+}
+
+.core-value {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1rem;
+/*    background: linear-gradient(90deg, rgba(209,255,254,1) 0%, rgba(0,95,115,1) 100%);*/
+/*background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);*/
+    width: 100vw; /* Make the section stretch to the full width */
+    min-height: calc(100vh - 115px);
+    margin: 0 auto;
+    gap: 0px;
+}
+
+.core-value-container {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 1 auto;
+}
+
+/* Individual Service Box */
+.core-value-box {
+    /*
+    background: linear-gradient(90deg, rgba(0,95,115,1) 0%, rgba(18,109,127,1) 13%, rgba(209,255,254,1) 100%);*/
+/*    background-color: #E4E4E1;
+    background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);
+    background-blend-mode: normal, multiply;*/
+/*    background: linear-gradient(to bottom, #858583 70px, black 70px, #E4E4E1 71px);*/
+    background: linear-gradient(to bottom, #858583 70px, #555555 70px, #E4E4E1 72px);
+/*    background: rgba(255, 255, 255, 0.1);*/
+    padding: 1.5rem;
+    border-radius: 0px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.core-value-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.core-value-box img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.core-value-box h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.core-value-box p {
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.core-value-box blockquote {
+    font-style: normal;
+    font-size: 24px;
+    line-height: 26.22px;
+    font-family: 'Franziska, Georgia, Cambria';
+    hyphens: auto;
+}
+
+.core-value h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.core-value h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.core-value p {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 1105px;
+    margin: 0 auto 2rem auto;
+    font-family: 'Franziska, Georgia, Cambria';
+}
+
+.small-text {
+    font-size: 0.7em; /* Adjusts size relative to h4 */
+    color: #FFD700;
+}
+
+/* ========== Base / Mobile-first (≤600px) ========== */
+
+/* Sticky “Contact” button */
+.sticky-bar {
+  position: fixed;
+  right: 2vw;
+  bottom: 4vw;   /* was 3vw → push it further up */
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sticky-bar button {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: #0059ff;
+  color: #fff;
+  border: 0;
+  border-radius: 1rem;
+  padding: .75rem 1.25rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  transition: background .2s ease;
+  touch-action: manipulation;
+}
+.sticky-bar button:hover { background: #0050e0; }
+.sticky-bar i.fas.fa-envelope { animation: envelope-bounce 1.2s infinite; }
+
+@keyframes envelope-bounce {
+  0%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-8px); }
+  40% { transform: translateY(0); }
+  60% { transform: translateY(-4px); }
+  80% { transform: translateY(0); }
+}
+
+/* Modal overlay */
+.sticky-form-modal {
+  display: none;                /* toggled via JS to display: block */
+  position: fixed;
+  inset: 0;                     /* cover the screen to catch clicks */
+  background: rgba(0,0,0,0.3);  /* semi-transparent backdrop */
+  z-index: 1000;
+}
+
+.sticky-form-content {
+  position: absolute;
+  right: 1vw;                   /* 2% from right edge */
+  bottom: 3vw;                  /* 2% from bottom edge */
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  min-width: 300px;
+  max-width: 90vw;
+  overflow: visible;
+}
+
+/* Close (×) */
+.close-sticky-form {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #0077b5;
+  user-select: none;
+}
+
+/* Heading */
+.sticky-form-content h3 {
+  margin: 0 28px 12px 0;     /* leave room for the close icon */
+  color: #0b5cab;
+  font-size: clamp(18px, 4.5vw, 22px);
+}
+
+/* Form layout */
+#stickyContactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                  /* tight vertical rhythm */
+}
+
+/* Inputs / Select / Textarea */
+#stickyContactForm input,
+#stickyContactForm select,
+#stickyContactForm textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;           /* avoid iOS zoom */
+  padding: 12px 14px;
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
+  background: #fff;
+}
+#stickyContactForm textarea {
+  min-height: 120px;         /* taller description box on mobile */
+  resize: vertical;
+}
+
+#stickyContactForm input:focus,
+#stickyContactForm select:focus,
+#stickyContactForm textarea:focus {
+  outline: none;
+  border-color: #0b5cab;
+  box-shadow: 0 0 0 3px rgba(11, 92, 171, .18);
+}
+
+/* Submit */
+#stickyContactForm button[type="submit"] {
+  margin-top: 10px;
+  background: #0b5cab;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#stickyContactForm button[type="submit"]:hover {
+  background: #094e97;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sticky-bar i.fas.fa-envelope { animation: none; }
+  .sticky-bar button,
+  #stickyContactForm button[type="submit"] { transition: none; }
+}
+
+/* ========== Tablet (≥600px) ========== */
+@media (min-width: 600px) {
+  .sticky-form-content {
+    max-width: 640px;
+    padding: 22px;
+  }
+  #stickyContactForm {
+    gap: 10px;
+  }
+  #stickyContactForm textarea {
+    min-height: 140px;       /* use extra space for description */
+  }
+}
+
+/* ========== Desktop (≥1024px) ========== */
+@media (min-width: 1024px) {
+  .sticky-form-modal {
+    padding: 32px;           /* larger edge padding */
+  }
+  .sticky-form-content {
+    max-width: 720px;        /* wider card on desktop */
+    padding: 24px 24px 22px;
+  }
+  /* Optional two-column layout on wide screens (comment out if you prefer single column)
+  #stickyContactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+  }
+  #stickyContactForm input,
+  #stickyContactForm select { grid-column: span 1; }
+  #stickyContactForm textarea { grid-column: 1 / -1; }
+  #stickyContactForm button[type="submit"] { grid-column: 1 / -1; }
+  */
+}
+
+/* ========== Tiny devices (≤360px) ========== */
+@media (max-width: 360px) {
+  .sticky-bar button { padding: .6rem 1rem; font-size: .95rem; }
+  #stickyContactForm textarea { min-height: 110px; }
+}
+
+@media (max-width: 600px) {
+  .sticky-bar {
+    right: 1rem;
+    bottom: 10vw; /* lift higher on mobile */
+  }
+  .sticky-form-content {
+    position: absolute;
+    right: 2vw;
+    bottom: 5vh;       /* was 2vw — move it up so there’s room below */
+    padding-bottom: 16px;
+  }
+  /* tighten vertical gaps so select sits higher */
+  #stickyContactForm { gap: 6px; }
+  #stickyContactForm textarea { min-height: 110px; }
+}
