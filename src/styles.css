@@ -1341,7 +1341,6 @@ section {
 @media (min-width: 600px) {
   .sticky-form-content {
     max-width: 640px;
-    padding: 22px;
   }
   #stickyContactForm {
     gap: 10px;
@@ -1358,7 +1357,7 @@ section {
   }
   .sticky-form-content {
     max-width: 720px;        /* wider card on desktop */
-    padding: 24px 24px 22px;
+    padding: 12px 12px 1px;
   }
   /* Optional two-column layout on wide screens (comment out if you prefer single column)
   #stickyContactForm {
@@ -1388,7 +1387,7 @@ section {
     position: absolute;
     right: 2vw;
     bottom: 5vh;       /* was 2vw — move it up so there’s room below */
-    padding-bottom: 16px;
+    padding-bottom: 0px;
   }
   /* tighten vertical gaps so select sits higher */
   #stickyContactForm { gap: 6px; }
@@ -1410,3 +1409,50 @@ section {
 }
 
 button.is-loading { opacity: .8; pointer-events: none; }
+
+/* Base style */
+#shortDescription {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;              /* small but readable */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  resize: vertical;             /* allow vertical resize */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus effect */
+#shortDescription:focus {
+  outline: none;
+  border-color: #0077b5;
+  box-shadow: 0 0 0 3px rgba(0, 119, 181, 0.15);
+  background: #fff;
+}
+
+/* Placeholder style */
+#shortDescription::placeholder {
+  color: #888;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+  #shortDescription {
+    font-size: 13px;
+    padding: 8px 10px;
+    min-height: 90px;
+  }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 1024px) {
+  #shortDescription {
+    font-size: 15px;
+    min-height: 120px;
+  }
+}
