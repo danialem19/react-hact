@@ -77,25 +77,24 @@ window.onclick = function(event) {
 // ...existing code...
 
 // Sticky form modal logic
-document.getElementById('openStickyForm').onclick = function() {
-    document.getElementById('stickyFormModal').style.display = 'block';
-};
+// document.getElementById('openStickyForm').onclick = function() {
+//     document.getElementById('stickyFormModal').style.display = 'block';
+// };
 
-document.querySelector('.close-sticky-form').onclick = function() {
-    document.getElementById('stickyFormModal').style.display = 'none';
-};
+// document.querySelector('.close-sticky-form').onclick = function() {
+//     document.getElementById('stickyFormModal').style.display = 'none';
+// };
 
-// Optional: Close modal when clicking outside the form
-document.getElementById('stickyFormModal').onclick = function(e) {
-    if (e.target === this) {
-        this.style.display = 'none';
-    }
-};
+// // Optional: Close modal when clicking outside the form
+// document.getElementById('stickyFormModal').onclick = function(e) {
+//     if (e.target === this) {
+//         this.style.display = 'none';
+//     }
+// };
 
-// Optional: Handle form submission
-document.getElementById('stickyContactForm').onsubmit = function(e) {
-    e.preventDefault();
-    // You can add AJAX or other logic here
-    alert('Thank you for contacting us!');
-    document.getElementById('stickyFormModal').style.display = 'none';
-};
+// // Optional: Handle form submission
+// document.getElementById('stickyContactForm').onsubmit = function(e) {
+//     e.preventDefault();
+//     // You can add AJAX or other logic here
+//     document.getElementById('stickyFormModal').style.display = 'none';
+// };

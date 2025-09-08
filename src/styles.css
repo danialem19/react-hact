@@ -1248,6 +1248,8 @@ section {
   z-index: 1000;
 }
 
+.sticky-form-modal.show { display: block; }
+
 .sticky-form-content {
   position: absolute;
   right: 1vw;                   /* 2% from right edge */
@@ -1392,3 +1394,19 @@ section {
   #stickyContactForm { gap: 6px; }
   #stickyContactForm textarea { min-height: 110px; }
 }
+
+.form-status {
+  font-size: 10px;     /* small text */
+  margin-top: 4px;
+  min-height: 10px;    /* reserve space so layout doesn’t jump */
+}
+
+.form-status.success {
+  color: #0f9d58;      /* green */
+}
+
+.form-status.error {
+  color: #d93025;      /* red */
+}
+
+button.is-loading { opacity: .8; pointer-events: none; }

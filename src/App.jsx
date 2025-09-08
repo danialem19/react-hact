@@ -236,6 +236,7 @@ const html = String.raw`<!-- Header -->
       </select>
       <textarea id="shortDescription" name="shortDescription" placeholder="Short description"rows="3"></textarea>
       <button type="submit">Send</button>
+      <div id="formStatus" class="form-status"></div>
     </form>
   </div>
 </div>
@@ -256,50 +257,87 @@ export default function App() {
     return () => { s.remove(); };
   }, []);
 
-  useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) el.scrollIntoView();
-    }
-  }, []);
-
-  useEffect(() => {
+useEffect(() => {
+  const modal = document.getElementById('stickyFormModal');
+  const openBtn = document.getElementById('openStickyForm');
+  const closeBtn = modal?.querySelector('.close-sticky-form');
   const form = document.getElementById('stickyContactForm');
-  if (!form) return;
+  const statusEl = document.getElementById('formStatus');
 
+  // --- open / close controlled by user only ---
+  const open = () => modal?.classList.add('show');
+  const close = () => modal?.classList.remove('show');
+
+  openBtn?.addEventListener('click', open);
+  closeBtn?.addEventListener('click', close);
+  // backdrop click closes (but clicks inside the card do not)
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+
+  // --- submit handler: reset only; keep modal open ---
   async function onSubmit(ev) {
     ev.preventDefault();
+    if (!form || !statusEl) return;
 
-    // Gather fields
-    const fd = new FormData(form);
-    // Ensure the two fields exist (names must match your HTML)
-    // <input name="contactInfo" ...> and <select name="ctaType" ...>
-    const body = new URLSearchParams(fd);
+    // reset status line
+    statusEl.textContent = '';
+    statusEl.className = 'form-status';
+
+    // button loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const defaultBtnText = submitBtn ? submitBtn.textContent : 'Send';
+    if (submitBtn) {
+      submitBtn.textContent = 'Submitting…';
+      submitBtn.classList.add('is-loading');
+      submitBtn.disabled = true;
+    }
+
+    const body = new URLSearchParams(new FormData(form));
 
     try {
       await fetch(import.meta.env.VITE_SHEETS_WEBAPP_URL, {
         method: 'POST',
-        mode: 'no-cors', // avoid CORS errors with Apps Script
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body,
       });
 
-      // Optimistic success (response is opaque in no-cors mode)
+      // ✅ keep modal open; just reset fields
       form.reset();
-      // Close modal if you have one
-      const modal = document.getElementById('stickyFormModal');
-      modal?.classList?.remove('show'); // or whatever class toggles it
-      alert('Thanks! We received your info.');
+      statusEl.textContent = 'Request Submitted';
+      statusEl.classList.add('success');
+
+      // optional: auto-clear message after 5s
+      setTimeout(() => {
+        if (statusEl.classList.contains('success')) {
+          statusEl.textContent = '';
+          statusEl.className = 'form-status';
+        }
+      }, 5000);
     } catch (err) {
       console.error(err);
-      alert('Sorry, something went wrong. Please try again.');
+      statusEl.textContent = 'Request Submission Error';
+      statusEl.classList.add('error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.textContent = defaultBtnText;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+      }
     }
   }
 
-  form.addEventListener('submit', onSubmit);
-  return () => form.removeEventListener('submit', onSubmit);
-}, []);
+  form?.addEventListener('submit', onSubmit);
 
+  // cleanup
+  return () => {
+    openBtn?.removeEventListener('click', open);
+    closeBtn?.removeEventListener('click', close);
+    modal?.removeEventListener('click', (e) => { if (e.target === modal) close(); });
+    form?.removeEventListener('submit', onSubmit);
+  };
+}, []);
   return (
     <div>
       <div dangerouslySetInnerHTML={{ __html: html }} />
