@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+const RECAPTCHA_SITE_KEY = '6LfmSMQrAAAAAGU1lfTbI0j43S7pCdBRWSwzvXYf';
 
 // Put your original <body> content here.
 // String.raw keeps the content literal (no escapes needed) and avoids accidental ${...} interpolation.
@@ -235,6 +236,7 @@ const html = String.raw`<!-- Header -->
         <option value="Patient">Patient</option>
       </select>
       <textarea id="shortDescription" name="shortDescription" placeholder="Short description"rows="3"></textarea>
+      <div id="recaptcha-container" class="recaptcha"></div>
       <button type="submit">Send</button>
       <div id="formStatus" class="form-status"></div>
     </form>
@@ -338,6 +340,84 @@ useEffect(() => {
     form?.removeEventListener('submit', onSubmit);
   };
 }, []);
+
+
+  useEffect(() => {
+    const form   = document.getElementById('stickyContactForm');
+    const box    = document.getElementById('recaptcha-container');
+    const status = document.getElementById('formStatus');
+
+    if (!form || !box) return;
+
+    let widgetId = null;
+    let rendered = false;
+
+    // Render the v2 checkbox once the API is ready
+    const tryRender = () => {
+      if (!rendered && window.grecaptcha && box) {
+        widgetId = window.grecaptcha.render('recaptcha-container', {
+          sitekey: RECAPTCHA_SITE_KEY,
+          theme: 'light',
+          size: 'normal',
+        });
+        rendered = true;
+      }
+    };
+
+    // If grecaptcha not ready yet, poll briefly
+    const poll = setInterval(() => {
+      if (window.grecaptcha) {
+        tryRender();
+        if (rendered) clearInterval(poll);
+      }
+    }, 250);
+    // Try immediately too (hot reload / fast script)
+    tryRender();
+
+    // Capture submit BEFORE your existing handlers:
+    // - if no token => block submit and show a small inline message
+    // - if token => inject hidden input so your existing code receives it
+    const onSubmitCapture = (e) => {
+      if (!rendered || !window.grecaptcha) return; // let submit proceed; script not ready yet
+
+      const token = window.grecaptcha.getResponse(widgetId);
+      if (!token) {
+        // Tiny inline message; does not close your modal or alter your logic
+        if (status) {
+          status.textContent = 'Please complete the reCAPTCHA.';
+          status.className = 'form-status error';
+        }
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return;
+      }
+
+      // Ensure hidden input exists for downstream handlers / server
+      let hidden = form.querySelector('input[name="g-recaptcha-response"]');
+      if (!hidden) {
+        hidden = document.createElement('input');
+        hidden.type  = 'hidden';
+        hidden.name  = 'g-recaptcha-response';
+        form.appendChild(hidden);
+      }
+      hidden.value = token;
+
+      // (optional) clear the inline error state if any
+      if (status && status.classList.contains('error')) {
+        status.textContent = '';
+        status.className = 'form-status';
+      }
+    };
+
+    // Use capture so we run before any legacy/bubbled handlers
+    form.addEventListener('submit', onSubmitCapture, true);
+
+    return () => {
+      clearInterval(poll);
+      form.removeEventListener('submit', onSubmitCapture, true);
+    };
+  }, []);
+
   return (
     <div>
       <div dangerouslySetInnerHTML={{ __html: html }} />

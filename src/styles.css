@@ -579,15 +579,13 @@ footer {
 
 /* Main Section Styling */
 .main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('/landing3.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: calc(100vh - 115px);
-    padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F0F8FF url('/landing.png') no-repeat center center;
+  background-size: contain;   /* fit the whole image */
+  min-height: calc(100vh - 115px);
+  padding: 2rem;
 }
 
 /* Modal Content (Centered and Responsive) */
@@ -1455,5 +1453,28 @@ button.is-loading { opacity: .8; pointer-events: none; }
   #shortDescription {
     font-size: 15px;
     min-height: 120px;
+  }
+}
+
+.recaptcha { margin: 6px 0; display: flex; justify-content: center; }
+@media (max-width: 360px) {
+  .recaptcha { transform: scale(0.9); transform-origin: center; }
+}
+
+/* Desktop-only adjustment */
+@media (min-width: 1024px) {
+  .modal-content-home {
+    margin-top: 1200px;   /* push the fieldset lower */
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    justify-content: center;
+    align-items: flex-end;  /* align content toward bottom */
+    padding-bottom: 0.5rem;   /* breathing room from footer */
+  }
+  .modal-content-home {
+    margin-top: 0;          /* reset, since flex takes over */
   }
 }
