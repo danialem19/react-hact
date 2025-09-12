@@ -186,7 +186,7 @@ const html = String.raw`<!-- Header -->
     </div>
     <div class="contact-info">
       <i class="fas fa-envelope"></i>
-      <p><a href="mailto:info@hact.org">info@hact.org</a></p>
+      <p><a href="mailto:info@hacts.org">info@hact.org</a></p>
     </div>
     <div class="contact-info">
       <i class="fas fa-phone-alt"></i>
