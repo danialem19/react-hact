@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-const RECAPTCHA_SITE_KEY = '6LfmSMQrAAAAAGU1lfTbI0j43S7pCdBRWSwzvXYf';
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 // Put your original <body> content here.
 // String.raw keeps the content literal (no escapes needed) and avoids accidental ${...} interpolation.
@@ -250,177 +250,177 @@ const html = String.raw`<!-- Header -->
 `;
 
 export default function App() {
-  useEffect(() => {
-    // load the legacy script once so inline onclick="..." handlers work
-    const s = document.createElement('script');
-    s.src = '/legacy/script.js';
-    s.defer = true;
-    document.body.appendChild(s);
-    return () => { s.remove(); };
-  }, []);
+    useEffect(() => {
+        // load the legacy script once so inline onclick="..." handlers work
+        const s = document.createElement('script');
+        s.src = '/legacy/script.js';
+        s.defer = true;
+        document.body.appendChild(s);
+        return () => { s.remove(); };
+    }, []);
 
-useEffect(() => {
-  const modal = document.getElementById('stickyFormModal');
-  const openBtn = document.getElementById('openStickyForm');
-  const closeBtn = modal?.querySelector('.close-sticky-form');
-  const form = document.getElementById('stickyContactForm');
-  const statusEl = document.getElementById('formStatus');
+    useEffect(() => {
+        const modal = document.getElementById('stickyFormModal');
+        const openBtn = document.getElementById('openStickyForm');
+        const closeBtn = modal?.querySelector('.close-sticky-form');
+        const form = document.getElementById('stickyContactForm');
+        const statusEl = document.getElementById('formStatus');
 
-  // --- open / close controlled by user only ---
-  const open = () => modal?.classList.add('show');
-  const close = () => modal?.classList.remove('show');
+        // --- open / close controlled by user only ---
+        const open = () => modal?.classList.add('show');
+        const close = () => modal?.classList.remove('show');
 
-  openBtn?.addEventListener('click', open);
-  closeBtn?.addEventListener('click', close);
-  // backdrop click closes (but clicks inside the card do not)
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) close();
-  });
-
-  // --- submit handler: reset only; keep modal open ---
-  async function onSubmit(ev) {
-    ev.preventDefault();
-    if (!form || !statusEl) return;
-
-    // reset status line
-    statusEl.textContent = '';
-    statusEl.className = 'form-status';
-
-    // button loading state
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const defaultBtnText = submitBtn ? submitBtn.textContent : 'Send';
-    if (submitBtn) {
-      submitBtn.textContent = 'Submitting…';
-      submitBtn.classList.add('is-loading');
-      submitBtn.disabled = true;
-    }
-
-    const body = new URLSearchParams(new FormData(form));
-
-    try {
-      await fetch(import.meta.env.VITE_SHEETS_WEBAPP_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body,
-      });
-
-      // ✅ keep modal open; just reset fields
-      form.reset();
-      statusEl.textContent = 'Request Submitted';
-      statusEl.classList.add('success');
-
-      // optional: auto-clear message after 5s
-      setTimeout(() => {
-        if (statusEl.classList.contains('success')) {
-          statusEl.textContent = '';
-          statusEl.className = 'form-status';
-        }
-      }, 5000);
-    } catch (err) {
-      console.error(err);
-      statusEl.textContent = 'Request Submission Error';
-      statusEl.classList.add('error');
-    } finally {
-      if (submitBtn) {
-        submitBtn.textContent = defaultBtnText;
-        submitBtn.classList.remove('is-loading');
-        submitBtn.disabled = false;
-      }
-    }
-  }
-
-  form?.addEventListener('submit', onSubmit);
-
-  // cleanup
-  return () => {
-    openBtn?.removeEventListener('click', open);
-    closeBtn?.removeEventListener('click', close);
-    modal?.removeEventListener('click', (e) => { if (e.target === modal) close(); });
-    form?.removeEventListener('submit', onSubmit);
-  };
-}, []);
-
-
-  useEffect(() => {
-    const form   = document.getElementById('stickyContactForm');
-    const box    = document.getElementById('recaptcha-container');
-    const status = document.getElementById('formStatus');
-
-    if (!form || !box) return;
-
-    let widgetId = null;
-    let rendered = false;
-
-    // Render the v2 checkbox once the API is ready
-    const tryRender = () => {
-      if (!rendered && window.grecaptcha && box) {
-        widgetId = window.grecaptcha.render('recaptcha-container', {
-          sitekey: RECAPTCHA_SITE_KEY,
-          theme: 'light',
-          size: 'normal',
+        openBtn?.addEventListener('click', open);
+        closeBtn?.addEventListener('click', close);
+        // backdrop click closes (but clicks inside the card do not)
+        modal?.addEventListener('click', (e) => {
+            if (e.target === modal) close();
         });
-        rendered = true;
-      }
-    };
+        open();
+        // --- submit handler: reset only; keep modal open ---
+        async function onSubmit(ev) {
+            ev.preventDefault();
+            if (!form || !statusEl) return;
 
-    // If grecaptcha not ready yet, poll briefly
-    const poll = setInterval(() => {
-      if (window.grecaptcha) {
-        tryRender();
-        if (rendered) clearInterval(poll);
-      }
-    }, 250);
-    // Try immediately too (hot reload / fast script)
-    tryRender();
+            // reset status line
+            statusEl.textContent = '';
+            statusEl.className = 'form-status';
 
-    // Capture submit BEFORE your existing handlers:
-    // - if no token => block submit and show a small inline message
-    // - if token => inject hidden input so your existing code receives it
-    const onSubmitCapture = (e) => {
-      if (!rendered || !window.grecaptcha) return; // let submit proceed; script not ready yet
+            // button loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const defaultBtnText = submitBtn ? submitBtn.textContent : 'Send';
+            if (submitBtn) {
+                submitBtn.textContent = 'Submitting…';
+                submitBtn.classList.add('is-loading');
+                submitBtn.disabled = true;
+            }
 
-      const token = window.grecaptcha.getResponse(widgetId);
-      if (!token) {
-        // Tiny inline message; does not close your modal or alter your logic
-        if (status) {
-          status.textContent = 'Please complete the reCAPTCHA.';
-          status.className = 'form-status error';
+            const body = new URLSearchParams(new FormData(form));
+
+            try {
+                await fetch(import.meta.env.VITE_SHEETS_WEBAPP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    body,
+                });
+
+                // ✅ keep modal open; just reset fields
+                form.reset();
+                statusEl.textContent = 'Request Submitted';
+                statusEl.classList.add('success');
+
+                // optional: auto-clear message after 5s
+                setTimeout(() => {
+                    if (statusEl.classList.contains('success')) {
+                        statusEl.textContent = '';
+                        statusEl.className = 'form-status';
+                    }
+                }, 5000);
+            } catch (err) {
+                console.error(err);
+                statusEl.textContent = 'Request Submission Error';
+                statusEl.classList.add('error');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.textContent = defaultBtnText;
+                    submitBtn.classList.remove('is-loading');
+                    submitBtn.disabled = false;
+                }
+            }
         }
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return;
-      }
 
-      // Ensure hidden input exists for downstream handlers / server
-      let hidden = form.querySelector('input[name="g-recaptcha-response"]');
-      if (!hidden) {
-        hidden = document.createElement('input');
-        hidden.type  = 'hidden';
-        hidden.name  = 'g-recaptcha-response';
-        form.appendChild(hidden);
-      }
-      hidden.value = token;
+        form?.addEventListener('submit', onSubmit);
 
-      // (optional) clear the inline error state if any
-      if (status && status.classList.contains('error')) {
-        status.textContent = '';
-        status.className = 'form-status';
-      }
-    };
+        // cleanup
+        return () => {
+            openBtn?.removeEventListener('click', open);
+            closeBtn?.removeEventListener('click', close);
+            modal?.removeEventListener('click', (e) => { if (e.target === modal) close(); });
+            form?.removeEventListener('submit', onSubmit);
+        };
+    }, []);
 
-    // Use capture so we run before any legacy/bubbled handlers
-    form.addEventListener('submit', onSubmitCapture, true);
 
-    return () => {
-      clearInterval(poll);
-      form.removeEventListener('submit', onSubmitCapture, true);
-    };
-  }, []);
+    useEffect(() => {
+        const form = document.getElementById('stickyContactForm');
+        const box = document.getElementById('recaptcha-container');
+        const status = document.getElementById('formStatus');
 
-  return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
-  );
+        if (!form || !box) return;
+
+        let widgetId = null;
+        let rendered = false;
+
+        // Render the v2 checkbox once the API is ready
+        const tryRender = () => {
+            if (!rendered && window.grecaptcha && box) {
+                widgetId = window.grecaptcha.render('recaptcha-container', {
+                    sitekey: RECAPTCHA_SITE_KEY,
+                    theme: 'light',
+                    size: 'normal',
+                });
+                rendered = true;
+            }
+        };
+
+        // If grecaptcha not ready yet, poll briefly
+        const poll = setInterval(() => {
+            if (window.grecaptcha) {
+                tryRender();
+                if (rendered) clearInterval(poll);
+            }
+        }, 250);
+        // Try immediately too (hot reload / fast script)
+        tryRender();
+
+        // Capture submit BEFORE your existing handlers:
+        // - if no token => block submit and show a small inline message
+        // - if token => inject hidden input so your existing code receives it
+        const onSubmitCapture = (e) => {
+            if (!rendered || !window.grecaptcha) return; // let submit proceed; script not ready yet
+
+            const token = window.grecaptcha.getResponse(widgetId);
+            if (!token) {
+                // Tiny inline message; does not close your modal or alter your logic
+                if (status) {
+                    status.textContent = 'Please complete the reCAPTCHA.';
+                    status.className = 'form-status error';
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return;
+            }
+
+            // Ensure hidden input exists for downstream handlers / server
+            let hidden = form.querySelector('input[name="g-recaptcha-response"]');
+            if (!hidden) {
+                hidden = document.createElement('input');
+                hidden.type = 'hidden';
+                hidden.name = 'g-recaptcha-response';
+                form.appendChild(hidden);
+            }
+            hidden.value = token;
+
+            // (optional) clear the inline error state if any
+            if (status && status.classList.contains('error')) {
+                status.textContent = '';
+                status.className = 'form-status';
+            }
+        };
+
+        // Use capture so we run before any legacy/bubbled handlers
+        form.addEventListener('submit', onSubmitCapture, true);
+
+        return () => {
+            clearInterval(poll);
+            form.removeEventListener('submit', onSubmitCapture, true);
+        };
+    }, []);
+
+    return (
+        <div>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+        </div>
+    );
 }
